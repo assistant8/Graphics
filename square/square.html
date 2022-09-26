@@ -3,15 +3,18 @@
 
 <head>
     <script id="vertex-shader" type="x-shader/x-vertex">
-        attribute vec4 vPosition;
+        attribute vec4 vPosition; //app에서 가져옴
         uniform vec4 transformation;
         varying vec4 v_color;
         void main()
         {
-            gl_Position = vPosition + transformation;
-            v_color = gl_Position*0.5 + 0.5;
+            gl_Position = vPosition + transformation; //trans에 0.5 넣으면 위치도 바뀌고 v_color도 변화
+            v_color = gl_Position*0.5 + 0.5;   
         }
     </script>
+    <!-- ver에서 v_color를 포지션으로 계산해서 frag로 넘겨줌 -->
+    <!-- transformation 여기선 하는게 없네 값이 안들어가있음 -->
+
 
     <script id="fragment-shader" type="x-shader/x-fragment">
         precision mediump float;

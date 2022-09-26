@@ -17,9 +17,7 @@ window.onload = function init()
         vec4(0.0, 1.0, 0.0, 1.0),
         vec4(0.0, 0.0, 1.0, 1.0)        
     ]
-    //  Configure WebGL
-    // var vertices = new Float32Array([-1, -1, -0.5, 1, 0, -1, 0, -1, 0.5, 1, 1, -1]);
-
+    
     gl.viewport( 0, 0, canvas.width, canvas.height );
     gl.clearColor( 0.0, 0.0, 0.0, 1.0 );
 
@@ -43,7 +41,7 @@ window.onload = function init()
     gl.bufferData (gl.ARRAY_BUFFER, flatten(colors), gl.STATIC_DRAW);
 
     var vColor = gl.getAttribLocation(program, "vColor");
-    gl.vertexAttribPointer(vColor, 4, gl.FLOAT, false, 0,0);
+    gl.vertexAttribPointer(vColor, 4, gl.FLOAT, false, 0,0); //4점 단위로 읽어들임, 마침 v4
     gl.enableVertexAttribArray(vColor);
 
     gl.clear(gl.COLOR_BUFFER_BIT);

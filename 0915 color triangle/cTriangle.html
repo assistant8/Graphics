@@ -9,12 +9,12 @@ varying vec4 fColor;
 void
 main()
 {
-    fColor = vColor;
-    gl_Position = vPosition;
-    gl_Position.x = gl_Position.x + 0.5;
-    //gl_Position.g = gl_Position.g + 0.5;
-    //gl_Position.xy = gl_Position.xy + vec2(-0.5, -0.5);
-    //gl_Position.st = gl_Position.ts;
+    fColor = vColor; //ver -> frag , 이 vColor는 app에서 가져옴 v4 그거
+    gl_Position = vPosition; //원래 하던거
+    //gl_Position.x = gl_Position.x + 0.5; //x축
+    //gl_Position.g = gl_Position.g + 0.5; //rgb에서 2번째니까 y축
+    //gl_Position.xy = gl_Position.xy + vec2(-0.5, -0.5); //각 vert마다 xy좌표에 -0.5씩 해줌
+    //gl_Position.st = gl_Position.ts; //stpq = rgba = xyzw
 
 }
 </script>
@@ -26,7 +26,7 @@ varying vec4 fColor;
 void
 main()
 {
-    gl_FragColor=fColor;
+    gl_FragColor=fColor; //원래 하던거, ver로 받은 fColor 할당
     //gl_FragColor.r = 1.0;
     //gl_FragColor.g = 1.0;
     //gl_FragColor.rgb = gl_FragColor.gbr;
