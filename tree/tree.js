@@ -30,18 +30,18 @@ window.onload = function init()
     gl.vertexAttribPointer( vPosition, 2, gl.FLOAT, false, 0, 0 );
     gl.enableVertexAttribArray( vPosition );
 
-    var uOffset = gl.getUniformLocation(program, "uOffset");
-    gl.uniform4fv(uOffset, [0, 0, 0, 0]); 
+    var uOffset = gl.getUniformLocation(program, "uOffset"); //유니폼 변수 위치를 세이더에서 찾음
     
     // var uColor=gl.getUniformLocation(program,"uColor");
 
-    gl.clear(gl.COLOR_BUFFER_BIT);   
+    gl.clear(gl.COLOR_BUFFER_BIT);         
 
-    var a = 0;
-    for(var i=0; i<3; i++) {
-        gl.uniform4fv(uOffset, [0, a, 0, 0]); 
-        gl.drawArrays( gl.TRIANGLES, 0, 3 );
-        a=a+0.5;        
+    
+
+    for(var i=0; i<5; i++) {
+        gl.drawArrays( gl.TRIANGLES, 0, 3 ); //반복될때 같은 3쌍(6점)을 그리겠지
+        //셰이더에서 +uOffset에서 반복될때 y좌표에 각각 -0.5, -1, -1.5 해줌
+        gl.uniform4fv(uOffset, [0, -0.5*i, 0, 0]); 
     }
 
     // // gl.uniform4fv(uColor,[0,1,0,1]);
