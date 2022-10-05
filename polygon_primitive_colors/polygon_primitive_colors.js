@@ -80,6 +80,9 @@ window.onload = function init()
 	var vPosition = gl.getAttribLocation(program, "vPosition");
     var vColor = gl.getAttribLocation(program, "vColor");
 
+
+
+
     // Load the data into the GPU
 	///////////////////////////////////////////////////////////////////////////////////////
 	// hexagon vertex buffer ////////////////////////////////////////////////////////////
@@ -87,10 +90,14 @@ window.onload = function init()
     gl.bindBuffer( gl.ARRAY_BUFFER, hexagonBufferId );
     gl.bufferData( gl.ARRAY_BUFFER, flatten(hexagonVertices), gl.STATIC_DRAW );
 
-	// Draw the hexagon
+	// vposition은 이미 위에서 세이더에서 갖고옴
     gl.vertexAttribPointer( vPosition, 2, gl.FLOAT, false, 0, 0 );
     gl.enableVertexAttribArray( vPosition );
-	gl.drawArrays(gl.LINE_STRIP, 0, 7);
+
+	gl.drawArrays(gl.LINE_STRIP, 0, 7); //각 꼭짓점이었고 그걸 이어주기만
+
+
+
 
     ///////////////////////////////////////////////////////////////////////////////////////
 	// triangle vertex buffer ////////////////////////////////////////////////////////////
@@ -103,7 +110,7 @@ window.onload = function init()
     gl.bufferData( gl.ARRAY_BUFFER, flatten(colors), gl.STATIC_DRAW );
 
 	// Associate out shader variables with our data buffer
-	gl.bindBuffer(gl.ARRAY_BUFFER, triangleBufferId);
+	gl.bindBuffer(gl.ARRAY_BUFFER, triangleBufferId); //지금 바인딩 된게 칼라로 바뀌어있으니
     gl.vertexAttribPointer( vPosition, 2, gl.FLOAT, false, 0, 0 );
 	gl.bindBuffer(gl.ARRAY_BUFFER, triangleColorBufferId);
 	gl.vertexAttribPointer( vColor, 4, gl.FLOAT, false, 0, 0 );
@@ -113,6 +120,9 @@ window.onload = function init()
 	gl.enableVertexAttribArray( vColor );  // For the triangle we want to use per-vertex color so we enable the vertexColorAttribute again
 	gl.drawArrays(gl.TRIANGLES, 0, 3);
 
+
+
+    
 	///////////////////////////////////////////////////////////////////////////////////////
 	// strip vertex buffer ////////////////////////////////////////////////////////////////
 	var stripBufferId = gl.createBuffer();
@@ -124,7 +134,7 @@ window.onload = function init()
 	gl.vertexAttribPointer( vPosition, 2, gl.FLOAT, false, 0, 0 );
 	gl.enableVertexAttribArray( vPosition );
 	gl.disableVertexAttribArray( vColor ); // We disable the vertex attribute array for the vertexColorAttribute and use a constant color again.
-	gl.vertexAttrib4f(vColor, 1.0, 1.0, 0.0, 1.0);
+	gl.vertexAttrib4f(vColor, 1.0, 1.0, 0.0, 1.0); //위처럼 vcolor 안쓰고 하나의 색만 씀
     
 	// draw triangle-strip filled with yellow
 	gl.drawArrays(gl.TRIANGLE_STRIP, 0, 11);

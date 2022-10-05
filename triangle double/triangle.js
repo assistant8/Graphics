@@ -4,21 +4,31 @@ var points;
 
 window.onload = function init()
 {
-    var canvas = document.getElementById( "gl-canvas" );
+    var canvas = document.getElementById( "gl-canvas" ); //html 캔버스 참조
 
     gl = WebGLUtils.setupWebGL( canvas );
     if ( !gl ) { alert( "WebGL isn't available" ); }
 
     // var vertices = [vec2(-1, -1), vec2(-0.5, 1), vec2(0, -1)]; //이걸로 아래에서 flatten 하면 작동됨
 
-    var vertices = new Float32Array([-1, -1, -0.5, 1, 0, -1, 0, -1, 0.5, 1, 1, -1]); //좌표정함 - typedarray 형식
+    // var vertices = new Float32Array([-1, -1, -0.5, 1, 0, -1, 0, -1, 0.5, 1, 1, -1]); //좌표정함 - typedarray 형식
 
+    var vertices = [
+        vec2( -0.5, 0.5 ), // v0
+        vec2( -0.5, -0.5 ), // v1
+        vec2( 0.5, 0.5 ), // v2
+        vec2( 0.5, -0.5), // v3
+        vec2( 0.5, 0.5), // v4 = v2
+        vec2( -0.5, -0.5) // v5 = v1
+        ];
+
+        
     gl.viewport( 0, 0, canvas.width, canvas.height );
     gl.clearColor( 0.0, 0.0, 0.0, 1.0 ); //캔버스 초기화, 배경색
 
     //  Load shaders and initialize attribute buffers
 
-    var program = initShaders( gl, "vertex-shader", "fragment-shader" );
+    var program = initShaders( gl, "vertex-shader", "fragment-shader" ); //html id와 동일해야
     gl.useProgram( program ); //shader 연결 2개
 
     // Load the data into the GPU
@@ -38,5 +48,5 @@ window.onload = function init()
 
 function render() {
     gl.clear( gl.COLOR_BUFFER_BIT );
-    gl.drawArrays( gl.TRIANGLES, 0, 3); //3점씩이 아니라, 3점만 그려라 (2개가 1점이라 생각)
+    gl.drawArrays( gl.TRIANGLE_FAN, 0, 4); //3점씩이 아니라, 3점만 그려라 (2개가 1점이라 생각)
 }

@@ -47,7 +47,7 @@ window.onload = function init()
     gl.enableVertexAttribArray( vPosition );
 	
 	var transformation = gl.getUniformLocation(program, "transformation");
-	gl.uniform4fv(transformation,[0.5,0.0,0.0,0.0]);
+	gl.uniform4fv(transformation,[0.5,1.0,0.0,0.0]);
 
     render();
 };
