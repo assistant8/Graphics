@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <script id="vertex-shader" type="x-shader/x-vertex">
+        attribute vec4 vPosition; //app에서 가져옴
+        uniform vec4 transformation;
+        varying vec4 v_color;
+        void main()
+        {
+            gl_Position = vPosition;
+        }
+    </script>
+
+
+
+    <script id="fragment-shader" type="x-shader/x-fragment">
+        precision mediump float;
+        varying vec4 v_color;
+        void main()
+        {
+            gl_FragColor = v_color;
+        }
+    </script>
+
+    <script type="text/javascript" src="js/GLTFLoader.js"></script>
+    <script type="text/javascript" src="js/three.min.js"></script>
+    <script type="text/javascript" src="js/orbitcontrols.js"></script>
+    <script type="text/javascript" src="toyota.js"></script>
+    <!-- <script type="text/javascript" src="https://cdn.rawgit.com/mrdoob/three.js/master/examples/js/loaders/GLTFLoader.js"></script> -->
+
+</head>
+
+<body>
+    <canvas id="gl-canvas" width="512" height="512">
+        Oops ... your browser doesn't support the HTML5 canvas element
+    </canvas>
+</body>
+
+</html>
