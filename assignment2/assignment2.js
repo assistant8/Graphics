@@ -21,7 +21,7 @@ window.onload = function init()
 
     gl = WebGLUtils.setupWebGL( canvas );
 
-    canvas.addEventListener("mousedown", function(event){
+    canvas.addEventListener("mousedown", function(event){ //클릭시 시걸 생성
         var vBuffer = gl.createBuffer();
         gl.bindBuffer(gl.ARRAY_BUFFER, vBuffer);
 
@@ -45,8 +45,8 @@ window.onload = function init()
     // Add direction event listener
     var dirButton = document.getElementById("Direction");
 
-    dirButton.addEventListener("click", function(){
-      direction =! direction;
+    dirButton.addEventListener("click", function(){ //버튼 클릭 시
+      direction =! direction; //디렉션 반대로 정의
     });
 
     //  Configure WebGL
@@ -61,9 +61,9 @@ window.onload = function init()
     gl.useProgram( program );
 
     // uniform variable
-    uOffset = gl.getUniformLocation(program, "uOffset");
+    uOffset = gl.getUniformLocation(program, "uOffset"); //오프셋 변수 가져옴
 
-    render();
+    render(); //아래 함수 콜
 
 
 };
