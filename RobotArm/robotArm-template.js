@@ -192,7 +192,7 @@ function upperArm() {
 
 
 function lowerArm()
-{
+{ 
     var s = scale4(LOWER_ARM_WIDTH, LOWER_ARM_HEIGHT, LOWER_ARM_WIDTH);
     var instanceMatrix = mult(translate(0.0, 0.5*LOWER_ARM_HEIGHT, 0.0), s);
     var t = mult(modelViewMatrix, instanceMatrix);
